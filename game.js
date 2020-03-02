@@ -9,7 +9,7 @@ class Game {
     this._objects = [
       new Block3D(
         // x, y, z
-        150, 0, 150,
+        0, 0, 0,
         // l, w, h
         100, 100, 100
       ),
@@ -18,8 +18,8 @@ class Game {
       // f, w, h
       1000, canvas.width, canvas.height,
       // x, y, z
-      200, 50, 0,
-      // ax, ay
+      50, 50, -200,
+      // ax, ay (will be overwritten on mouse move)
       0, 0
     );
     Point3D.camera = this._camera;
