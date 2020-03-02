@@ -10,6 +10,7 @@ function registerDebugCallback() {
   let lblCameraAX = document.getElementById('lblCameraAX');
   let lblCameraAY = document.getElementById('lblCameraAY');
 
+  game.allowDebugging = true;
   game.attachDebugListener(() => {
     lblCursorX.innerText = Math.floor(game._inputHdl.mouseXFromOrigin);
     lblCursorY.innerText = Math.floor(game._inputHdl.mouseYFromOrigin);

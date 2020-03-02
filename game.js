@@ -29,6 +29,7 @@ class Game {
     this._sweepHeight = 90.0 / (canvas.height * 0.5);
     this._crossHair = new Crosshair(canvas.width, canvas.height);
     this._debugCallback = null;
+    this._debugging = false;
   }
 
   _invalidate() {
@@ -140,7 +141,13 @@ class Game {
     this._update();
     this._draw();
     this._validate();
-    this._debug();
+    if (this._debugging) {
+      this._debug();
+    }
+  }
+
+  set allowDebugging(value) {
+    this._debugging = value;
   }
 
   start() {
