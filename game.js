@@ -27,7 +27,7 @@ class Game {
     this._dirty = true;
     this._paused = false;
     this._sweepWidth = 180.0 / (canvas.width * 0.5);
-    this._sweepHeight = 180.0 / (canvas.height * 0.5);
+    this._sweepHeight = 90.0 / (canvas.height * 0.5);
     this._crossHair = new Crosshair(canvas.width, canvas.height);
   }
 
