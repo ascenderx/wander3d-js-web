@@ -123,16 +123,14 @@ class Game {
   _draw() {
     this._crossHair.state = !this._paused;
     if (this._dirty) {
-      if (!this._paused) {
-        // Clear.
-        this._context.clearRect(0, 0, this._width, this._height);
+      // Clear.
+      this._context.clearRect(0, 0, this._width, this._height);
 
-        // Draw objects.
-        for (let object of this._objects) {
-          object.draw(this._context);
-        }
+      // Draw objects.
+      for (let object of this._objects) {
+        object.draw(this._context);
       }
-      
+    
       this._crossHair.draw(this._context);
     }
   }
