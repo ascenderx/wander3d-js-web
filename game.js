@@ -112,7 +112,7 @@ class Game {
   }
 
   _debug() {
-    if (this._debugCallback) {
+    if (this._debugging && this._debugCallback) {
       this._debugCallback();
     }
   }
@@ -141,9 +141,7 @@ class Game {
     this._update();
     this._draw();
     this._validate();
-    if (this._debugging) {
-      this._debug();
-    }
+    this._debug();
   }
 
   set allowDebugging(value) {
