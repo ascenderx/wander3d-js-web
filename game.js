@@ -1,6 +1,5 @@
 class Game {
-  constructor(canvas, debugLabels) {
-    this._labels = debugLabels;
+  constructor(canvas) {
     this._context = canvas.getContext('2d');
     this._width = canvas.width;
     this._height = canvas.height;
@@ -29,6 +28,7 @@ class Game {
     this._sweepWidth = 180.0 / (canvas.width * 0.5);
     this._sweepHeight = 90.0 / (canvas.height * 0.5);
     this._crossHair = new Crosshair(canvas.width, canvas.height);
+    this._debugCallback = null;
   }
 
   _invalidate() {
@@ -110,14 +110,14 @@ class Game {
     }
   }
 
-  _updateDebugLabels() {
-    this._labels.lblCursorX.innerText = Math.floor(this._inputHdl.mouseXFromOrigin);
-    this._labels.lblCursorY.innerText = Math.floor(this._inputHdl.mouseYFromOrigin);
-    this._labels.lblCameraX.innerText = Math.floor(this._camera.x);
-    this._labels.lblCameraY.innerText = Math.floor(this._camera.y);
-    this._labels.lblCameraZ.innerText = Math.floor(this._camera.z);
-    this._labels.lblCameraAX.innerText = Math.floor(this._camera.angleX);
-    this._labels.lblCameraAY.innerText = Math.floor(this._camera.angleY);
+  _debug() {
+    if (this._debugCallback) {
+      this._debugCallback();
+    }
+  }
+
+  attachDebugListener(callback) {
+    this._debugCallback = callback;
   }
 
   _draw() {
@@ -138,9 +138,9 @@ class Game {
   _tick() {
     this._input();
     this._update();
-    this._updateDebugLabels();
     this._draw();
     this._validate();
+    this._debug();
   }
 
   start() {
